@@ -11,7 +11,6 @@ typedef struct No {
     int n;
     No *prox;
     No *ant;
-
 }No;
 
 struct No *head = NULL;
