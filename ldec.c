@@ -1,63 +1,68 @@
 #include "ldec.h"
 
+No *head = NULL;
+
 No* criar_No(int n) {
     No* novoNo = (No*) malloc(sizeof(No));
     if (novoNo == NULL){
         printf("'Alocacao de Memoria Falhou!/n");
-    exit(1);
+        exit(1);
     }
     novoNo->n = n;
     novoNo->prox = NULL;
-    novoNo ->ant = NULL;
+    novoNo->ant = NULL;
     return novoNo;
 }
 
-int inserir_No_Inicio(int n){
+void inserir_No_Inicio(int n){
     struct No* novoNo = criar_No(n);
     if (head == NULL) {
+        head = novoNo;
         head->prox = head;
         head->ant = head;
     } else {
         struct No* ultimo = head->ant;
-        novoNo->prox =head;
-        novoNo->ant=ultimo;
+        novoNo->prox = head;
+        novoNo->ant = ultimo;
         head->ant = novoNo;
         ultimo->prox = novoNo;
-        head = novoNo;
+    head = novoNo;
     }
-    printf("%d inserir no inicio!", n);
+    printf("%d inserido no inicio!\n", n);
 }
 
-int inserir_final(int n){
+void inserir_final(int n){
     struct No* novoNo = criar_No(n);
     if (head == NULL) {
         head = novoNo;
         head->prox = head;
-        No* ultimo;
+        head->ant = head; 
+    } else {
+        struct No* ultimo = head->ant;
+        novoNo->prox = head;
+        novoNo->ant = ultimo;
         ultimo->prox = novoNo;
-        head->ant = novoNo; 
+        head->ant = novoNo;
     }
-    printf("inserir %d no final\n", n);
+    printf("inserido %d no final\n", n);
 }
 
-int deletar_Elemento_porTecla(int key) {
+void deletar_Elemento_porTecla(int key) {
     if (head == NULL) {
         printf("A lista está vazia! Nada para deletar.\n");
-        return;
+    return;
     }
 
     No *curr = head;
 
-    // Buscar o nó
     while (curr->n != key) {
         curr = curr->prox;
         if (curr == head) {
             printf("Nó com valor %d não encontrado.\n", key);
-            return;
+        return;
         }
     }
 
-    // Caso: apenas um nó
     if (curr->prox == head && curr->ant == head) {
         head = NULL;
         free(curr);
@@ -65,15 +70,14 @@ int deletar_Elemento_porTecla(int key) {
         return;
     }
 
-    // Caso: nó é o primeiro
     if (curr == head) {
         No *ultimo = head->ant;
         head = head->prox;
         head->ant = ultimo;
         ultimo->prox = head;
-    } else {
-        curr->ant->prox = curr->prox;
-        curr->prox->ant = curr->ant;
+     } else {
+         curr->ant->prox = curr->prox;
+         curr->prox->ant = curr->ant;
     }
 
     free(curr);
@@ -87,12 +91,10 @@ void mostrar() {
     }
 
     struct No* current = head;
-    printf("Lista Duplamente Encadeada Circular\n");
-    printf("--- Simulacao de Nucleos de CPU ---\n");
+    printf("\n--- Lista Duplamente Encadeada Circular ---\n");
     do {
-        printf("%d <->\n", current->n);
+        printf("%d <-> ", current->n);
         current = current->prox;
-    }while(current != head);
-    printf("(Head)\n");
+    } while(current != head);
+    printf("(Volta ao HEAD %d)\n", head->n);
 }
-
