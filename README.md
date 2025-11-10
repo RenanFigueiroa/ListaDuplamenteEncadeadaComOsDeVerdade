@@ -1,13 +1,13 @@
-**Simulação de Processador com Lista Duplamente Encadeada Circular**
+# Simulação de Processador com Lista Duplamente Encadeada Circular
 
-1. Introdução:
+**1. Introdução:**
 
 O presente projeto implementa, em linguagem C, uma simulação de um processador que utiliza uma lista duplamente encadeada circular para representar núcleos de execução (threads).
 Cada nó da lista representa um núcleo da CPU e o programa realiza o escalonamento cíclico até que um dos núcleos execute uma “tarefa especial”.
 
 Este tipo de estrutura de dados é amplamente utilizado em sistemas reais, como escalonadores de processos e gerenciamento de recursos em sistemas operacionais, devido à sua natureza circular, que permite percorrer os elementos de forma contínua e eficiente.
 
-2. Estrutura do Projeto:
+**2. Estrutura do Projeto:**
 
 O projeto é composto por três arquivos principais:
 
@@ -15,7 +15,7 @@ O projeto é composto por três arquivos principais:
 - ldec.h	Declara a estrutura do nó e as funções da lista circular.
 - ldec.c	Implementa as funções de criação, inserção, remoção e exibição dos nós.
 
-3. Estrutura de Dados: Lista Duplamente Encadeada Circular:
+**3. Estrutura de Dados: Lista Duplamente Encadeada Circular:**
 
 A estrutura básica do nó está definida em ldec.h:
 
@@ -39,9 +39,9 @@ Descrição:
 
 O fato de a lista ser circular significa que o último nó aponta de volta para o primeiro (head), e o primeiro aponta para o último — permitindo percorrer a lista indefinidamente sem chegar a NULL.
 
-4. Implementação das Funções:
+**4. Implementação das Funções:**
 
-4.1. Criação de um Nó:
+**4.1. Criação de um Nó:**
 
 No* criar_No(int n) {
     No* novoNo = (No*) malloc(sizeof(No));
@@ -59,7 +59,7 @@ No* criar_No(int n) {
 - Essa função aloca dinamicamente memória para um novo nó e inicializa seus ponteiros.
 O controle de erro evita travamentos caso a alocação falhe.
 
-4.2: Inserção no Início da Lista:
+**4.2: Inserção no Início da Lista:**
 
 void inserir_No_Inicio(int n) {
     No* novoNo = criar_No(n);
@@ -79,13 +79,13 @@ void inserir_No_Inicio(int n) {
 }
 
 
-Explicação:
+*Explicação:*
 
 - Caso a lista esteja vazia, o nó é inicializado apontando para si mesmo.
 
 - Caso contrário, o novo nó é conectado entre o último e o primeiro elementos.
 
-4.3. Inserção no Final da Lista: 
+**4.3. Inserção no Final da Lista:**
 
 void inserir_final(int n) {
     No* novoNo = criar_No(n);
@@ -106,7 +106,7 @@ void inserir_final(int n) {
 
 - Essa função é amplamente utilizada no main.c para criar os núcleos iniciais.
 
-4.4. Exclusão de um Nó Específico:
+**4.4. Exclusão de um Nó Específico:**
 
 void deletar_Elemento_porTecla(int key) {
     if (head == NULL) {
@@ -145,7 +145,7 @@ void deletar_Elemento_porTecla(int key) {
 }
 
 
-Explicação:
+*Explicação:*
 
 - A função percorre a lista até encontrar o nó com valor igual a key, ajusta os ponteiros vizinhos e libera a memória.
 Se o nó for o único da lista, a cabeça é definida como NULL.
@@ -170,9 +170,9 @@ void mostrar() {
 
 - Essa função percorre toda a lista e exibe os elementos de forma contínua, mostrando o retorno ao início.
 
-5. Simulação no main.c: 
+**5. Simulação no main.c:**
 
-5.1. Criação e Exibição dos Núcleos:
+**5.1. Criação e Exibição dos Núcleos:**
 
 int num_nucleos = 4;
 for (int i = 0; i < num_nucleos; i++){
@@ -181,7 +181,7 @@ for (int i = 0; i < num_nucleos; i++){
 mostrar();
 
 
-Saída esperada:
+*Saída esperada:*
 
 --- Lista Duplamente Encadeada Circular ---
 0 <-> 1 <-> 2 <-> 3 <-> (Volta ao HEAD 0)
@@ -210,7 +210,7 @@ while (executando) {
 }
 
 
-Exemplo de saída simulada:
+*Exemplo de saída simulada:*
 
 Thread Escalonado para Tarefa 0
 >>>Thread 0 em espera<<<
@@ -219,7 +219,7 @@ Thread Escalonado para Tarefa 1
 Thread Escalonado para Tarefa 2
 >>>Nucleo 2 encontrou e executou a operacao! <<<
 
-6. Conclusão
+**6. Conclusão:**
 
 O código apresentado demonstra de forma eficiente o uso de listas duplamente encadeadas circulares para simular o comportamento de um escalonador de CPU.
 A estrutura circular permite que o sistema percorra infinitamente os núcleos, simulando o comportamento de round-robin scheduling usado em sistemas operacionais reais.
@@ -234,7 +234,7 @@ Conceitos reforçados:
 
 - Simulação de escalonamento de tarefas.
 
-7. Resultados e Análise da Execução:
+**7. Resultados e Análise da Execução:**
 
 Após a compilação e execução do programa, a seguinte saída foi obtida:
 
