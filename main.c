@@ -1,7 +1,7 @@
 #include "ldec.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h> // Para sortear o número aleatório
+#include <time.h> // Para sortear o número aleatório.
 
 // Inclui bibliotecas para a pausa (sleep)
 #ifdef _WIN32
@@ -9,7 +9,7 @@ include <windows.h>
 #define PAUSA(ms) Sleep(ms)
 #else
 #include <unistd.h>
-#define PAUSA(ms) usleep(ms * 1000) // usleep é em microssegundos
+#define PAUSA(ms) usleep(ms * 1000) // usleep é em microssegundos.
 #endif
 int main(){
     srand(time(NULL));
@@ -22,7 +22,7 @@ int main(){
     printf("--- Sistema inicializado com %d nucleos ---\n",num_nucleos);
     mostrar();
 
-    //Sortear um Nucleo para Executar uma tarefa
+    //Sortear um Nucleo para Executar uma tarefa.
     int nucleo_alvo = rand() % num_nucleos;
     printf("\n***Tarefa especial designada para a thread %d\n\n", nucleo_alvo);
     PAUSA(2000);
@@ -49,11 +49,11 @@ int main(){
             thread_atual = thread_atual->prox;
         }
     }
-    //Limpeza
+    //Limpeza.
     printf("\n--- Simulação Finalizada ---\n");
     printf("Desalocando todos os núcleos...\n");
 
-    //Deletar TODOS os Nos (Um por Um)
+    //Deletar TODOS os Nos (Um por Um).
 
     while (head != NULL) {
         deletar_Elemento_porTecla(head->n);
